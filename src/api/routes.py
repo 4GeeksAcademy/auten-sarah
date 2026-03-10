@@ -6,6 +6,12 @@ from api.models import db, User
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
+
+
+
 api = Blueprint('api', __name__)
 
 # Allow CORS requests to this API
@@ -20,3 +26,49 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
+@api.route('/test', methods=['POST', 'GET'])
+def test():
+
+    response_body = {
+        "message": test
+    }
+
+    return jsonify(response_body), 200
+
+@api.route("/login", methods=["POST"])
+def login(): 
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+    user = User.query.filter_by(email=email).first()
+
+    if user is None:
+        return jsonify({"msg": "Bad username or password"}), 401
+    
+    if password != user.password:
+        return jsonify({"msg": "Bad username or password"}), 401
+    
+    access_token = create_access_token(identity=email)
+    return jsonify(access_token=access_token)
+
+@api.route("/signup", methods=["POST"])
+def signup(): 
+    body = request.get_json()
+    user = User.query.filter_by(email=body["email"]).first()
+
+    if user is not None:
+        return jsonify({"msg": "The user already exists."}), 401
+    
+    user = User(email=body["email"], password=body["password"], is_active=True)
+    db.session.add(user)
+    db.session.commit()
+    response_body = { 
+        "msg": "User created"
+    }
+    return jsonify(response_body), 201
+
+@api.route("/private", methods=["GET"])
+@jwt_required()
+def private():
+    current_user = get_jwt_identity()
+    return jsonify({"msg": "Access granted", "user": current_user}), 200
