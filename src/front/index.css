@@ -1,0 +1,36 @@
+ .wave-text {
+      display: flex;
+      font-size: 100px;
+      font-weight: 900;
+    }
+
+    .wave-text span {
+      animation: wave 1s ease-in-out infinite;
+    }
+
+    .wave-text span:nth-child(1)  { color: #e74c3c; animation-delay: 0.0s; }
+    .wave-text span:nth-child(2)  { color: #e67e22; animation-delay: 0.1s; }
+    .wave-text span:nth-child(3)  { color: #f1c40f; animation-delay: 0.2s; }
+    .wave-text span:nth-child(4)  { color: #2ecc71; animation-delay: 0.3s; }
+    .wave-text span:nth-child(5)  { color: #3498db; animation-delay: 0.4s; }
+    .wave-text span:nth-child(6)  { color: #9b59b6; animation-delay: 0.5s; }
+    .wave-text span:nth-child(7)  { color: #e74c3c; animation-delay: 0.0s; }
+    .wave-text span:nth-child(8)  { color: #e67e22; animation-delay: 0.1s; }
+    .wave-text span:nth-child(9)  { color: #f1c40f; animation-delay: 0.2s; }
+    .wave-text span:nth-child(10)  { color: #2ecc71; animation-delay: 0.3s; }
+    .wave-text span:nth-child(11)  { color: #3498db; animation-delay: 0.4s; }
+    .wave-text span:nth-child(12)  { color: #9b59b6; animation-delay: 0.5s; }
+    .wave-text span:nth-child(13)  { color: #e74c3c; animation-delay: 0.0s; }
+    .wave-text span:nth-child(14)  { color: #e67e22; animation-delay: 0.1s; }
+    .wave-text span:nth-child(15)  { color: #f1c40f; animation-delay: 0.2s; }
+    .wave-text span:nth-child(16)  { color: #2ecc71; animation-delay: 0.3s; }
+    .wave-text span:nth-child(17)  { color: #3498db; animation-delay: 0.4s; }
+    .wave-text span:nth-child(18)  { color: #9b59b6; animation-delay: 0.5s; }
+    .wave-text span:nth-child(19)  { color: #3498db; animation-delay: 0.4s; }
+    .wave-text span:nth-child(20)  { color: #9b59b6; animation-delay: 0.5s; }
+    .wave-text span:nth-child(21)  { color: #9b59b6; animation-delay: 0.5s; }
+
+    @keyframes wave {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-30px); }
+    }
